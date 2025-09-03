@@ -1,4 +1,3 @@
-using Xunit;
 using Agoria.SV.Application.DTOs;
 using Agoria.SV.Application.Features.Companies.Commands.CreateCompany;
 using FluentAssertions;
@@ -6,15 +5,16 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
 using Xunit;
 using System.Text.Json;
+using Agoria.SV.API.Tests.Fixtures;
 
 namespace Agoria.SV.API.Tests.Integration.Controllers;
 
-public class CompaniesEndpointTests : IClassFixture<TestWebApplicationFactory<Program>>
+public class CompaniesEndpointTests : IClassFixture<TestWebApplicationFactory>
 {
     private readonly HttpClient _client;
-    private readonly TestWebApplicationFactory<Program> _factory;
+    private readonly TestWebApplicationFactory _factory;
 
-    public CompaniesEndpointTests(TestWebApplicationFactory<Program> factory)
+    public CompaniesEndpointTests(TestWebApplicationFactory factory)
     {
         _factory = factory;
         _client = factory.CreateClient();

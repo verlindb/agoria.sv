@@ -3,7 +3,6 @@ using Agoria.SV.Application.DTOs;
 using Agoria.SV.Application.Features.Companies.Commands.CreateCompany;
 using NBomber.CSharp;
 using System.Net.Http.Json;
-using Xunit;
 using System.Text.Json;
 
 namespace Agoria.SV.API.Tests.Performance;

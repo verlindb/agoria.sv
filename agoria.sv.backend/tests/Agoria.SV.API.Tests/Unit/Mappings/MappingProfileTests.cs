@@ -2,7 +2,6 @@ using Xunit;
 using Agoria.SV.Application.DTOs;
 using Agoria.SV.Application.Mappings;
 using Agoria.SV.Domain.Entities;
-using Agoria.SV.Domain.Enums;
 using Agoria.SV.Domain.ValueObjects;
 using AutoMapper;
 using FluentAssertions;
