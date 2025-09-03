@@ -1,0 +1,24 @@
+# Build artifacts
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.deps.json
+*.runtimeconfig.json
+*.staticwebassets.endpoints.json
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
