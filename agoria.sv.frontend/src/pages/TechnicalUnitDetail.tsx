@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Box, Paper, Typography, Button, Grid, Chip, Breadcrumbs, Toolbar, ToggleButtonGroup, ToggleButton, TextField, InputAdornment, Snackbar, Alert, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import { ArrowBack, Factory, Person, Business, LocationOn, Search, ViewList, ViewModule, Add, Download, Upload, ExpandMore, NavigateNext, Home, Group, SupervisorAccount, Gavel } from '@mui/icons-material';
 import { useAppContext } from '../contexts/AppContext';
@@ -11,12 +11,20 @@ import { parseEmployeesFromExcel, downloadEmployeeTemplate, downloadManagerTempl
 import { ORGrid } from '../components/Ondernemingsraad/ORGrid';
 
 export const TechnicalUnitDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id, unitId, companyId } = useParams<{ id?: string; unitId?: string; companyId?: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { technicalUnits, companies, getEmployeesByTechnicalUnit, searchEmployees, addEmployee, importEmployees, updateEmployee, deleteEmployee, addToOndernemingsraad, removeFromOndernemingsraad, bulkAddToOndernemingsraad, setManagerForUnit, clearManagerForUnit } = useAppContext();
 
-  const unit = useMemo(() => technicalUnits.find(u => u.id === id), [technicalUnits, id]);
-  const company = useMemo(() => companies.find(c => c.id === unit?.companyId), [companies, unit]);
+  // Support both URL patterns: /technical-units/:id and /companies/:companyId/technical-units/:unitId
+  const actualUnitId = unitId || id;
+  const unit = useMemo(() => technicalUnits.find(u => u.id === actualUnitId), [technicalUnits, actualUnitId]);
+  const company = useMemo(() => {
+    if (companyId) {
+      return companies.find(c => c.id === companyId);
+    }
+    return companies.find(c => c.id === unit?.companyId);
+  }, [companies, unit, companyId]);
   const [viewMode, setViewMode] = useState<'grid' | 'card'>('grid');
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState<Employee[]>([]);
@@ -41,6 +49,32 @@ export const TechnicalUnitDetail: React.FC = () => {
   const managersRef = useRef<HTMLDivElement>(null);
   const orRef = useRef<HTMLDivElement>(null);
 
+  // Effect to handle URL-based section visibility
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes('/personeel')) {
+      setVisibleSection('personeel');
+      setIsPersonnelOpen(true);
+      setIsManagersOpen(false);
+      setIsOROpen(false);
+    } else if (path.includes('/leidinggevenden')) {
+      setVisibleSection('leidinggevenden');
+      setIsPersonnelOpen(false);
+      setIsManagersOpen(true);
+      setIsOROpen(false);
+    } else if (path.includes('/ondernemingsraad')) {
+      setVisibleSection('ondernemingsraad');
+      setIsPersonnelOpen(false);
+      setIsManagersOpen(false);
+      setIsOROpen(true);
+    } else {
+      setVisibleSection('all');
+      setIsPersonnelOpen(true);
+      setIsManagersOpen(true);
+      setIsOROpen(true);
+    }
+  }, [location.pathname]);
+
   const scrollTo = (key: 'personeel' | 'leidinggevenden' | 'ondernemingsraad') => {
     if (key === 'personeel') {
       setVisibleSection('personeel');
@@ -64,7 +98,7 @@ export const TechnicalUnitDetail: React.FC = () => {
     setVisibleSection('all');
   };
 
-  const employees = useMemo(() => (id ? getEmployeesByTechnicalUnit(id) : []), [id, getEmployeesByTechnicalUnit]);
+  const employees = useMemo(() => (actualUnitId ? getEmployeesByTechnicalUnit(actualUnitId) : []), [actualUnitId, getEmployeesByTechnicalUnit]);
   
   // Search functionality with backend API
   useEffect(() => {
@@ -76,7 +110,7 @@ export const TechnicalUnitDetail: React.FC = () => {
       }
 
       try {
-        const results = await searchEmployees(query, id);
+        const results = await searchEmployees(query, actualUnitId);
         setSearchResults(results);
       } catch (error) {
         console.error('Employee search failed:', error);
@@ -91,7 +125,7 @@ export const TechnicalUnitDetail: React.FC = () => {
     }, 300); // 300ms debounce
 
     return () => clearTimeout(timeoutId);
-  }, [search, searchEmployees, employees, id]);
+  }, [search, searchEmployees, employees, actualUnitId]);
 
   // Use search results when searching, otherwise use all employees for the unit
   const filtered = search.trim() ? searchResults : employees;
@@ -147,10 +181,10 @@ export const TechnicalUnitDetail: React.FC = () => {
 
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !id) return;
+    if (!file || !actualUnitId) return;
     try {
       setUploading(true);
-      const imported = await parseEmployeesFromExcel(file, id);
+      const imported = await parseEmployeesFromExcel(file, actualUnitId);
       importEmployees(imported);
       setSnackbar({ open: true, message: `${imported.length} medewerkers geïmporteerd`, severity: 'success' });
     } catch (err) {
@@ -379,10 +413,10 @@ export const TechnicalUnitDetail: React.FC = () => {
               <Button variant="outlined" startIcon={<Download />} onClick={downloadManagerTemplate}>Template</Button>
               <input type="file" ref={mgrFileInputRef} style={{ display: 'none' }} accept=".xlsx,.xls" onChange={async (e) => {
                 const file = e.target.files?.[0];
-                if (!file || !id) return;
+                if (!file || !actualUnitId) return;
                 try {
                   setMgrUploading(true);
-                  const imported = await parseEmployeesFromExcel(file, id);
+                  const imported = await parseEmployeesFromExcel(file, actualUnitId);
                   imported.forEach(emp => addEmployee({ ...emp, role: emp.role || 'Manager' }));
                   setSnackbar({ open: true, message: `${imported.length} leidinggevenden geïmporteerd`, severity: 'success' });
                 } catch (err) {
@@ -447,7 +481,7 @@ export const TechnicalUnitDetail: React.FC = () => {
                   let imported = 0;
                   let skipped = 0;
                   for (const row of rows) {
-                    const emp = employees.find(emp => emp.technicalBusinessUnitId === id && emp.email.toLowerCase() === row.email.toLowerCase());
+                    const emp = employees.find(emp => emp.technicalBusinessUnitId === actualUnitId && emp.email.toLowerCase() === row.email.toLowerCase());
                     if (emp) {
                       addToOndernemingsraad(emp.id, row.category, unit.id);
                       imported++;

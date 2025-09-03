@@ -5,11 +5,9 @@ import {
   Drawer,
   AppBar,
   Toolbar,
-  List,
   Typography,
   Divider,
   IconButton,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -24,49 +22,29 @@ import {
 } from '@mui/material';
 import {
   Menu as MenuIcon,
-  Business,
-  Dashboard,
-  People,
-  Settings,
-  Assessment,
-  HowToVote,
   Notifications,
   DarkMode,
   LightMode,
   AccountCircle,
   Logout,
-  Factory, // Add this import
 } from '@mui/icons-material';
-import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useAppContext } from '../../contexts/AppContext';
 import { useTheme as useCustomTheme } from '../../contexts/ThemeContext';
+import DynamicNavigation from '../Navigation/DynamicNavigation';
 
 const drawerWidth = 280;
 const miniDrawerWidth = 72;
-
-const navigationItems = [
-  { text: 'Dashboard', icon: <Dashboard />, path: '/', color: '#5E35B1' },
-  { text: 'Bedrijven', icon: <Business />, path: '/companies', color: '#00ACC1' },
-  { text: 'Technische Eenheden', icon: <Factory />, path: '/technical-units', color: '#FF6B6B' }, // Add this line
-  { text: 'Verkiezingen', icon: <HowToVote />, path: '/elections', color: '#10B981' },
-  { text: 'Kandidaten', icon: <People />, path: '/candidates', color: '#F59E0B' },
-  { text: 'Rapporten', icon: <Assessment />, path: '/reports', color: '#3B82F6' },
-  { text: 'Instellingen', icon: <Settings />, path: '/settings', color: '#EF4444' },
-];
 
 export const MainLayout: React.FC = () => {
   const theme = useTheme();
   const { isDarkMode, toggleTheme } = useCustomTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const navigate = useNavigate();
-  const location = useLocation();
   const { isDrawerOpen, setIsDrawerOpen } = useAppContext();
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
-
-  const currentNavItem = navigationItems.find(item => item.path === location.pathname);
 
   const drawer = (
     <Box role="navigation" aria-label="Hoofdnavigatie" sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -101,55 +79,7 @@ export const MainLayout: React.FC = () => {
         </Box>
       </Toolbar>
       <Divider />
-      <List sx={{ flexGrow: 1, px: isMobile || isDrawerOpen ? 2 : 1, py: 2 }}>
-        {navigationItems.map((item, index) => (
-          <Fade in={true} timeout={300 + index * 100} key={item.text}>
-            <ListItem disablePadding sx={{ mb: 1 }}>
-              <Tooltip title={!isMobile && !isDrawerOpen ? item.text : ''} placement="right">
-              <ListItemButton
-                selected={location.pathname === item.path}
-                onClick={() => navigate(item.path)}
-                aria-current={location.pathname === item.path ? 'page' : undefined}
-                aria-label={`Navigate to ${item.text}`}
-                data-testid={`nav-${item.text.toLowerCase().replace(/\s+/g, '-')}`}
-                sx={{
-                  borderRadius: 2,
-                  transition: 'all 0.3s',
-                  justifyContent: !isMobile && !isDrawerOpen ? 'center' : 'flex-start',
-                  px: !isMobile && !isDrawerOpen ? 1.5 : 2,
-                  '&.Mui-selected': {
-                    background: alpha(item.color, isDarkMode ? 0.2 : 0.1),
-                    borderLeft: `4px solid ${item.color}`,
-                    '&:hover': {
-                      background: alpha(item.color, isDarkMode ? 0.3 : 0.15),
-                    },
-                  },
-                  '&:hover': {
-                    background: alpha(theme.palette.primary.main, 0.05),
-                    transform: 'translateX(4px)',
-                  },
-                }}
-              >
-                <ListItemIcon sx={{ 
-                  color: location.pathname === item.path ? item.color : 'inherit',
-                  minWidth: !isMobile && !isDrawerOpen ? 'auto' : 48,
-                }}>
-                  {item.icon}
-                </ListItemIcon>
-                {(isMobile || isDrawerOpen) && (
-                  <ListItemText 
-                    primary={item.text}
-                    primaryTypographyProps={{
-                      fontWeight: location.pathname === item.path ? 600 : 400,
-                    }}
-                  />
-                )}
-              </ListItemButton>
-              </Tooltip>
-            </ListItem>
-          </Fade>
-        ))}
-      </List>
+      <DynamicNavigation />
       <Divider />
       <Box sx={{ p: 2 }}>
         <Tooltip title={!isMobile && !isDrawerOpen ? 'Uitloggen' : ''} placement="right">
@@ -211,15 +141,13 @@ export const MainLayout: React.FC = () => {
                 data-testid="page-heading"
                 sx={{ 
                   fontWeight: 700,
-                  background: currentNavItem 
-                    ? `linear-gradient(135deg, ${currentNavItem.color} 0%, ${alpha(currentNavItem.color, 0.7)} 100%)`
-                    : theme.gradient?.primary,
+                  background: theme.gradient?.primary || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   display: { xs: 'block', sm: 'block' }, // Ensure visibility on all screen sizes
                 }}
               >
-                {currentNavItem?.text || 'Dashboard'}
+                Agoria SV
               </Typography>
             </Zoom>
           </Box>
