@@ -1,3 +1,4 @@
+using Xunit;
 using Agoria.SV.Domain.ValueObjects;
 using FluentAssertions;
 using Xunit;

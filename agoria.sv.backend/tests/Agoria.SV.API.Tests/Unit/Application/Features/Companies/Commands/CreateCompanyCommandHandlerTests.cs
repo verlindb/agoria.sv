@@ -1,3 +1,4 @@
+using Xunit;
 using Agoria.SV.Application.DTOs;
 using Agoria.SV.Application.Features.Companies.Commands.CreateCompany;
 using Agoria.SV.Domain.Entities;
