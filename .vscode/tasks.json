@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Dev Server",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Start Dev Server",
+			"type": "shell",
+			"command": "npm run dev --prefix agoria.sv.frontend",
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "build-backend",
+			"command": "dotnet",
+			"type": "process",
+			"args": ["build", "${workspaceFolder}/agoria.sv.backend/Agoria.SV.sln"],
+			"group": "build",
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "run-backend",
+			"command": "dotnet",
+			"type": "process",
+			"args": ["run", "--project", "${workspaceFolder}/agoria.sv.backend/src/Agoria.SV.API/Agoria.SV.API.csproj"],
+			"group": "build",
+			"problemMatcher": "$msCompile",
+			"options": {
+				"env": {
+					"ASPNETCORE_ENVIRONMENT": "Development",
+					"ASPNETCORE_URLS": "http://localhost:5000"
+				}
+			}
+		}
+	]
+}
