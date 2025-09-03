@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="13823eda-d495-458d-9a93-c5edfffca78c" name="bverlinden@AAP-BFL53M3 2025-09-02 12:25:09" runUser="EMEAAD\bverlinden" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-09-02T12:25:09.9624811+02:00" queuing="2025-09-02T12:25:09.9624814+02:00" start="2025-09-02T12:25:09.1720123+02:00" finish="2025-09-02T12:25:09.9656281+02:00" />
+  <TestSettings name="default" id="5243cd93-a49c-47ce-81fd-fe6afc3f868c">
+    <Deployment runDeploymentRoot="bverlinden_AAP-BFL53M3_2025-09-02_12_25_09" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="2927d7fd-4b67-4dc4-afdd-87e94f27aa43" testId="c680214c-597f-1dd0-6e1d-4737457d5e08" testName="Agoria.SV.API.Tests.Integration.BulkImportDebugTests.Debug_BulkImportEndpoint_ShouldWork" computerName="AAP-BFL53M3" duration="00:00:00.2096261" startTime="2025-09-02T12:25:09.8770598+02:00" endTime="2025-09-02T12:25:09.8770711+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2927d7fd-4b67-4dc4-afdd-87e94f27aa43">
+      <Output>
+        <StdOut>Request payload:&#xD;
+[{"Name":"Test Company","LegalName":"Test Company BV","Ondernemingsnummer":"BE0123456789","Type":"BV","Sector":"IT","NumberOfEmployees":100,"Address":{"Street":"Test Street","Number":"1","PostalCode":"1000","City":"Brussels","Country":"Belgium"},"ContactPerson":{"FirstName":"John","LastName":"Doe","Email":"john@test.com","Phone":"+32 1 111 11 11","Function":"Manager"}}]&#xD;
+Response status: OK&#xD;
+Response content: []&#xD;
+Content Header: Content-Type = application/json; charset=utf-8</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Agoria.SV.API.Tests.Integration.BulkImportDebugTests.Debug_BulkImportEndpoint_ShouldWork" storage="c:\projects\vibecoding\opus4_1\agoria.sv.backend\tests\agoria.sv.api.tests\bin\debug\net9.0\agoria.sv.api.tests.dll" id="c680214c-597f-1dd0-6e1d-4737457d5e08">
+      <Execution id="2927d7fd-4b67-4dc4-afdd-87e94f27aa43" />
+      <TestMethod codeBase="C:\projects\Vibecoding\opus4_1\agoria.sv.backend\tests\Agoria.SV.API.Tests\bin\Debug\net9.0\Agoria.SV.API.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Agoria.SV.API.Tests.Integration.BulkImportDebugTests" name="Debug_BulkImportEndpoint_ShouldWork" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="c680214c-597f-1dd0-6e1d-4737457d5e08" executionId="2927d7fd-4b67-4dc4-afdd-87e94f27aa43" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.3.1+6b60a9e56a (64-bit .NET 9.0.8)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: Agoria.SV.API.Tests&#xD;
+[xUnit.net 00:00:00.09]   Discovered:  Agoria.SV.API.Tests&#xD;
+[xUnit.net 00:00:00.10]   Starting:    Agoria.SV.API.Tests&#xD;
+[xUnit.net 00:00:00.34]   Finished:    Agoria.SV.API.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

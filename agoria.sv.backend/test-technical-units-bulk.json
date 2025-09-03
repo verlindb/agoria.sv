@@ -1,0 +1,86 @@
+[
+  {
+    "companyId": "e26d8687-8018-4618-8a20-1193873684b4",
+    "name": "IT Afdeling Updated",
+    "code": "TBE001",
+    "description": "Updated Technische bedrijfseenheid voor IT",
+    "numberOfEmployees": 30,
+    "manager": "Updated Manager",
+    "department": "IT & Technology",
+    "location": {
+      "street": "Updated Techstraat",
+      "number": "15",
+      "postalCode": "2000",
+      "city": "Antwerpen",
+      "country": "België"
+    },
+    "status": "active",
+    "language": "N",
+    "pcWorkers": "110",
+    "pcClerks": "210",
+    "fodDossierBase": "54321",
+    "fodDossierSuffix": "2",
+    "electionBodies": {
+      "cpbw": true,
+      "or": true,
+      "sdWorkers": true,
+      "sdClerks": true
+    }
+  },
+  {
+    "companyId": "e26d8687-8018-4618-8a20-1193873684b4",
+    "name": "Marketing Department",
+    "code": "TBE002",
+    "description": "New Marketing department",
+    "numberOfEmployees": 15,
+    "manager": "Marketing Manager",
+    "department": "Marketing",
+    "location": {
+      "street": "Marketingstraat",
+      "number": "25",
+      "postalCode": "2000",
+      "city": "Antwerpen",
+      "country": "België"
+    },
+    "status": "active",
+    "language": "N",
+    "pcWorkers": "150",
+    "pcClerks": "250",
+    "fodDossierBase": "11111",
+    "fodDossierSuffix": "1",
+    "electionBodies": {
+      "cpbw": true,
+      "or": true,
+      "sdWorkers": false,
+      "sdClerks": false
+    }
+  },
+  {
+    "companyId": "e26d8687-8018-4618-8a20-1193873684b4",
+    "name": "HR Department",
+    "code": "TBE003",
+    "description": "Human Resources department",
+    "numberOfEmployees": 8,
+    "manager": "HR Manager",
+    "department": "Human Resources",
+    "location": {
+      "street": "HR Straat",
+      "number": "30",
+      "postalCode": "2000",
+      "city": "Antwerpen",
+      "country": "België"
+    },
+    "status": "active",
+    "language": "N",
+    "pcWorkers": "120",
+    "pcClerks": "220",
+    "fodDossierBase": "22222",
+    "fodDossierSuffix": "1",
+    "electionBodies": {
+      "cpbw": false,
+      "or": true,
+      "sdWorkers": false,
+      "sdClerks": true
+    }
+  }
+]

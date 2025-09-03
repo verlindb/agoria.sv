@@ -1,0 +1,9 @@
+{
+  "technicalBusinessUnitId": "b600b87c-92ba-425f-a0bb-ad40badb3f26",
+  "firstName": "Frontend",
+  "lastName": "Test User",
+  "email": "frontend.test@example.com",
+  "phone": "+32 3 999 99 99",
+  "role": "Test Role",
+  "startDate": "2025-01-01T00:00:00Z"
+}
