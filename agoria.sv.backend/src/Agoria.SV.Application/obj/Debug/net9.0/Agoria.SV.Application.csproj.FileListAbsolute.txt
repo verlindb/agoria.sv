@@ -8,9 +8,9 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\D
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.AssemblyInfoInputs.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.AssemblyInfo.cs
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.csproj.CoreCompileInputs.cache
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.sourcelink.json
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.S.579146D1.Up2Date
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.dll
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\refint\Agoria.SV.Application.dll
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\ref\Agoria.SV.Application.dll
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.sourcelink.json

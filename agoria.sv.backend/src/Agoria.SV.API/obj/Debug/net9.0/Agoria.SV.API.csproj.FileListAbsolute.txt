@@ -1,10 +1,3 @@
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.csproj.AssemblyReference.cache
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.AssemblyInfoInputs.cache
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.AssemblyInfo.cs
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.csproj.CoreCompileInputs.cache
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.MvcApplicationPartsAssemblyInfo.cs
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.MvcApplicationPartsAssemblyInfo.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net9.0\appsettings.Development.json
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net9.0\appsettings.json
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net9.0\Agoria.SV.API.staticwebassets.endpoints.json
@@ -159,6 +152,14 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net9.0\Agoria.SV.Application.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net9.0\Agoria.SV.Infrastructure.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\bin\Debug\net9.0\Agoria.SV.Domain.pdb
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.csproj.AssemblyReference.cache
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.AssemblyInfoInputs.cache
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.AssemblyInfo.cs
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.csproj.CoreCompileInputs.cache
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.MvcApplicationPartsAssemblyInfo.cs
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.MvcApplicationPartsAssemblyInfo.cache
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.sourcelink.json
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\scopedcss\bundle\Agoria.SV.API.styles.css
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\staticwebassets.build.json
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\staticwebassets.development.json
@@ -175,4 +176,3 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.genruntimeconfig.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\ref\Agoria.SV.API.dll
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.sourcelink.json

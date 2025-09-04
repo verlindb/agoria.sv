@@ -11,10 +11,10 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\ob
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.AssemblyInfoInputs.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.AssemblyInfo.cs
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.csproj.CoreCompileInputs.cache
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.sourcelink.json
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.S.3CB30918.Up2Date
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.dll
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\refint\Agoria.SV.Infrastructure.dll
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.genruntimeconfig.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\ref\Agoria.SV.Infrastructure.dll
-C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.sourcelink.json
