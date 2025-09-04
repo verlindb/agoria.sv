@@ -35,8 +35,8 @@ public class CompanyRepository : ICompanyRepository
 
     public async Task UpdateAsync(Company entity, CancellationToken cancellationToken = default)
     {
-        _context.Companies.Update(entity);
-        await _context.SaveChangesAsync(cancellationToken);
+    _context.Companies.Update(entity);
+    await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)

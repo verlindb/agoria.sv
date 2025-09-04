@@ -1,6 +1,11 @@
 using Agoria.SV.Domain.Entities;
 using Agoria.SV.Domain.ValueObjects;
+using Agoria.SV.Domain.Common;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Agoria.SV.Infrastructure.Persistence;
 
@@ -9,6 +14,43 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
+    }
+
+    public override int SaveChanges()
+    {
+        UpdateVersionAndTimestamps();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        UpdateVersionAndTimestamps();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private void UpdateVersionAndTimestamps()
+    {
+        var entries = ChangeTracker.Entries()
+            .Where(e => e.Entity is BaseEntity && (e.State == EntityState.Modified || e.State == EntityState.Added));
+
+        foreach (var entry in entries)
+        {
+            var be = (BaseEntity)entry.Entity;
+            // Always set UpdatedAt to UTC now for added/modified
+            be.UpdatedAt = DateTime.UtcNow;
+
+            if (entry.State == EntityState.Modified)
+            {
+                // Increment Version for modified entities to act as an integer concurrency token
+                be.Version++;
+            }
+            else if (entry.State == EntityState.Added)
+            {
+                // Ensure CreatedAt and Version have sensible defaults for new entities
+                if (be.CreatedAt == default) be.CreatedAt = DateTime.UtcNow;
+                if (be.Version == 0) be.Version = 1;
+            }
+        }
     }
 
     public DbSet<Company> Companies { get; set; }
@@ -52,6 +94,7 @@ public class ApplicationDbContext : DbContext
             });
 
             entity.HasIndex(e => e.Ondernemingsnummer).IsUnique();
+            entity.Property(e => e.RowVersion).IsRowVersion();
         });
 
         modelBuilder.Entity<TechnicalBusinessUnit>(entity =>
@@ -95,6 +138,7 @@ public class ApplicationDbContext : DbContext
                   .OnDelete(DeleteBehavior.Restrict);
 
             entity.HasIndex(e => e.Code).IsUnique();
+            entity.Property(e => e.RowVersion).IsRowVersion();
         });
 
         modelBuilder.Entity<Employee>(entity =>
@@ -116,6 +160,7 @@ public class ApplicationDbContext : DbContext
                   .OnDelete(DeleteBehavior.Restrict);
 
             entity.HasIndex(e => e.Email).IsUnique();
+            entity.Property(e => e.RowVersion).IsRowVersion();
         });
 
         modelBuilder.Entity<WorksCouncil>(entity =>
@@ -131,6 +176,7 @@ public class ApplicationDbContext : DbContext
                   .OnDelete(DeleteBehavior.Restrict);
 
             entity.HasIndex(e => e.TechnicalBusinessUnitId).IsUnique();
+            entity.Property(e => e.RowVersion).IsRowVersion();
         });
 
         modelBuilder.Entity<OrMembership>(entity =>
@@ -166,6 +212,7 @@ public class ApplicationDbContext : DbContext
 
             // Unique constraint: an employee can only be in one category per technical unit
             entity.HasIndex(e => new { e.EmployeeId, e.Category }).IsUnique();
+            entity.Property(e => e.RowVersion).IsRowVersion();
         });
     }
 }

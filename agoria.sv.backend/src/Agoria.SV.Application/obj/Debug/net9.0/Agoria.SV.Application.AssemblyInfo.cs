@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Agoria.SV.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+545e042540e7bdaac2b2a647925097592bc0bd99")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bedd3812e3a37cbc37978595c19da3552038ca26")]
 [assembly: System.Reflection.AssemblyProductAttribute("Agoria.SV.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Agoria.SV.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
