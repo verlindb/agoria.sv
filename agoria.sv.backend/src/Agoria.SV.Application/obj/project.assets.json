@@ -503,8 +503,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "c:\\projects\\Vibecoding\\opus4_1\\agoria.sv.backend\\src\\Agoria.SV.Domain\\Agoria.SV.Domain.csproj": {
-              "projectPath": "c:\\projects\\Vibecoding\\opus4_1\\agoria.sv.backend\\src\\Agoria.SV.Domain\\Agoria.SV.Domain.csproj"
+            "C:\\projects\\Vibecoding\\opus4_1\\agoria.sv.backend\\src\\Agoria.SV.Domain\\Agoria.SV.Domain.csproj": {
+              "projectPath": "C:\\projects\\Vibecoding\\opus4_1\\agoria.sv.backend\\src\\Agoria.SV.Domain\\Agoria.SV.Domain.csproj"
             }
           }
         }

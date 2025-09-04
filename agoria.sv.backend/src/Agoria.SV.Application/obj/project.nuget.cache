@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xEOfdfg24Rw=",
+  "dgSpecHash": "JPh6yd2Jvoc=",
   "success": true,
-  "projectFilePath": "c:\\projects\\Vibecoding\\opus4_1\\agoria.sv.backend\\src\\Agoria.SV.Application\\Agoria.SV.Application.csproj",
+  "projectFilePath": "C:\\projects\\Vibecoding\\opus4_1\\agoria.sv.backend\\src\\Agoria.SV.Application\\Agoria.SV.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bverlinden\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\bverlinden\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
