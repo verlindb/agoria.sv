@@ -17,3 +17,4 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\ob
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.genruntimeconfig.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\ref\Agoria.SV.Infrastructure.dll
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Infrastructure\obj\Debug\net9.0\Agoria.SV.Infrastructure.sourcelink.json

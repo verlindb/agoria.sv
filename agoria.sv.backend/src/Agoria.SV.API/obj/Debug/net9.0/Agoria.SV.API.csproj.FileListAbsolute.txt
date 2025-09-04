@@ -175,3 +175,4 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.genruntimeconfig.cache
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\ref\Agoria.SV.API.dll
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.API\obj\Debug\net9.0\Agoria.SV.API.sourcelink.json

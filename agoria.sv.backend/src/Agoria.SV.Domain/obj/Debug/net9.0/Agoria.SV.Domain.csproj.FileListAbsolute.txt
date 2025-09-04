@@ -9,3 +9,4 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Domain\obj\Debug\
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Domain\obj\Debug\net9.0\refint\Agoria.SV.Domain.dll
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Domain\obj\Debug\net9.0\Agoria.SV.Domain.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Domain\obj\Debug\net9.0\ref\Agoria.SV.Domain.dll
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Domain\obj\Debug\net9.0\Agoria.SV.Domain.sourcelink.json

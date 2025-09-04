@@ -13,3 +13,4 @@ C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\D
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\refint\Agoria.SV.Application.dll
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.pdb
 C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\ref\Agoria.SV.Application.dll
+C:\projects\Vibecoding\opus4_1\agoria.sv.backend\src\Agoria.SV.Application\obj\Debug\net9.0\Agoria.SV.Application.sourcelink.json
