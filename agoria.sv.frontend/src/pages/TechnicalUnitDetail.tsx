@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Box, Paper, Typography, Button, Grid, Chip, Breadcrumbs, Toolbar, ToggleButtonGroup, ToggleButton, TextField, InputAdornment, Snackbar, Alert, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import { ArrowBack, Factory, Person, Business, LocationOn, Search, ViewList, ViewModule, Add, Download, Upload, ExpandMore, NavigateNext, Home } from '@mui/icons-material';
+import { ArrowBack, Factory, Person, Business, LocationOn, Search, ViewList, ViewModule, Add, Download, Upload, ExpandMore, NavigateNext, Home, Group, SupervisorAccount, Gavel } from '@mui/icons-material';
 import { useAppContext } from '../contexts/AppContext';
 import { PersonnelGrid } from '../components/Personnel/PersonnelGrid';
 import { PersonnelCardView } from '../components/Personnel/PersonnelCardView';
@@ -74,6 +74,22 @@ export const TechnicalUnitDetail: React.FC = () => {
       setIsOROpen(true);
     }
   }, [location.pathname]);
+
+  const scrollTo = (key: 'personeel' | 'leidinggevenden' | 'ondernemingsraad') => {
+    if (key === 'personeel') {
+      setVisibleSection('personeel');
+      setIsPersonnelOpen(true);
+      setTimeout(() => personnelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
+    } else if (key === 'leidinggevenden') {
+      setVisibleSection('leidinggevenden');
+      setIsManagersOpen(true);
+      setTimeout(() => managersRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
+    } else {
+      setVisibleSection('ondernemingsraad');
+      setIsOROpen(true);
+      setTimeout(() => orRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
+    }
+  };
 
   const expandAll = () => {
     setIsPersonnelOpen(true);
@@ -284,7 +300,39 @@ export const TechnicalUnitDetail: React.FC = () => {
               </Box>
             </Grid>
           </Grid>
-
+          {/* Divider + full-width section quick nav chips */}
+          <Box sx={{ mt: 2 }}>
+            <Box component="hr" aria-hidden="true" style={{ border: 0, borderTop: '1px solid', borderColor: 'rgba(0,0,0,0.12)' }} />
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 2 }}>
+              <Chip
+                size="small"
+                icon={<Group />}
+                label="Personeel"
+                onClick={() => scrollTo('personeel')}
+                clickable
+                color={visibleSection === 'personeel' ? 'primary' : 'default'}
+                variant={visibleSection === 'personeel' ? 'filled' : 'outlined'}
+              />
+              <Chip
+                size="small"
+                icon={<SupervisorAccount />}
+                label="Leidinggevenden"
+                onClick={() => scrollTo('leidinggevenden')}
+                clickable
+                color={visibleSection === 'leidinggevenden' ? 'primary' : 'default'}
+                variant={visibleSection === 'leidinggevenden' ? 'filled' : 'outlined'}
+              />
+              <Chip
+                size="small"
+                icon={<Gavel />}
+                label="Ondernemingsraad"
+                onClick={() => scrollTo('ondernemingsraad')}
+                clickable
+                color={visibleSection === 'ondernemingsraad' ? 'primary' : 'default'}
+                variant={visibleSection === 'ondernemingsraad' ? 'filled' : 'outlined'}
+              />
+            </Box>
+          </Box>
         </Paper>
       </Box>
 
