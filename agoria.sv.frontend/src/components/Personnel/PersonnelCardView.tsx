@@ -25,7 +25,21 @@ export const PersonnelCardView: React.FC<PersonnelCardViewProps> = ({ employees,
       <Grid container spacing={3}>
         {employees.map(emp => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={emp.id}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <Card 
+              sx={{ 
+                height: '100%', 
+                display: 'flex', 
+                flexDirection: 'column',
+                cursor: 'pointer',
+                '&:hover': {
+                  boxShadow: 6,
+                },
+              }}
+              onClick={() => onView(emp)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter') onView(emp); }}
+            >
               <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                   <Avatar><Person /></Avatar>
@@ -37,9 +51,9 @@ export const PersonnelCardView: React.FC<PersonnelCardViewProps> = ({ employees,
                 <Typography variant="body2" color="text.secondary">{emp.phone}</Typography>
               </CardContent>
               <CardActions>
-                <IconButton onClick={() => onView(emp)} size="small"><Visibility /></IconButton>
-                <IconButton onClick={() => onEdit(emp)} size="small"><Edit /></IconButton>
-                <IconButton onClick={(e) => handleOpen(e, emp)} size="small" sx={{ ml: 'auto' }}><MoreVert /></IconButton>
+                <IconButton onClick={(e) => { e.stopPropagation(); onView(emp); }} size="small"><Visibility /></IconButton>
+                <IconButton onClick={(e) => { e.stopPropagation(); onEdit(emp); }} size="small"><Edit /></IconButton>
+                <IconButton onClick={(e) => { e.stopPropagation(); handleOpen(e, emp); }} size="small" sx={{ ml: 'auto' }}><MoreVert /></IconButton>
               </CardActions>
             </Card>
           </Grid>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, IconButton, Menu, MenuItem, ListItemIcon, ListItemText, Chip, Divider, Checkbox, Tooltip } from '@mui/material';
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams, GridRowParams } from '@mui/x-data-grid';
 import CustomGridToolbar from '../common/CustomGridToolbar';
 import { MoreVert, Edit, Delete, Visibility, Groups, GroupAdd, Construction, Badge, WorkspacePremium, EmojiPeople, ChevronRight } from '@mui/icons-material';
 import { Employee, ORCategory } from '../../types';
@@ -82,6 +82,22 @@ export const PersonnelGrid: React.FC<PersonnelGridProps> = ({ employees, onEdit,
   <DataGrid
         rows={employees}
         columns={columns}
+        onCellClick={(params: any, event: any) => {
+          // Don't navigate if clicking on actions column or checkbox column
+          if (params.field !== 'actions' && params.field !== '__check__') {
+            // Don't navigate if clicking on interactive elements like chips, buttons, or their children
+            const target = event.target as HTMLElement;
+            if (target.closest('.MuiChip-root') || 
+                target.closest('.MuiIconButton-root') ||
+                target.closest('.MuiButton-root') ||
+                target.closest('[role="button"]') ||
+                target.classList.contains('MuiChip-deleteIcon') ||
+                target.classList.contains('MuiSvgIcon-root')) {
+              return;
+            }
+            onView(params.row as Employee);
+          }
+        }}
         pageSizeOptions={[5,10,25,50]}
         initialState={{ pagination: { paginationModel: { pageSize: 10 }}}}
         density="compact"

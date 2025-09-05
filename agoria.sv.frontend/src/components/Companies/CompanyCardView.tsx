@@ -85,10 +85,15 @@ export const CompanyCardView: React.FC<CompanyCardViewProps> = ({
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
+                cursor: 'pointer',
                 '&:hover': {
                   boxShadow: 6,
                 },
               }}
+              onClick={() => onView(company)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter') onView(company); }}
             >
               <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" justifyContent="space-between" alignItems="flex-start">
@@ -121,14 +126,14 @@ export const CompanyCardView: React.FC<CompanyCardViewProps> = ({
               <CardActions>
                 <IconButton
                   aria-label="Bekijk bedrijf"
-                  onClick={() => onView(company)}
+                  onClick={(e) => { e.stopPropagation(); onView(company); }}
                   size="small"
                 >
                   <Visibility />
                 </IconButton>
                 <IconButton
                   aria-label="Bewerk bedrijf"
-                  onClick={() => onEdit(company)}
+                  onClick={(e) => { e.stopPropagation(); onEdit(company); }}
                   size="small"
                 >
                   <Edit />
@@ -136,7 +141,7 @@ export const CompanyCardView: React.FC<CompanyCardViewProps> = ({
                 <IconButton
                   aria-label="Meer acties"
                   aria-haspopup="true"
-                  onClick={(e) => handleMenuOpen(e, company)}
+                  onClick={(e) => { e.stopPropagation(); handleMenuOpen(e, company); }}
                   size="small"
                   sx={{ marginLeft: 'auto' }}
                 >
