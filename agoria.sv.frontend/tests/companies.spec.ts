@@ -43,20 +43,20 @@ test.describe('Companies - create flow', () => {
     const addBtn = page.getByRole('button', { name: /toevoegen|add/i });
     await expect(addBtn).toBeVisible({ timeout: 5000 });
 
-    // Click submit and wait for the backend response first to reduce flakiness
-    await Promise.all([
-      addBtn.click(),
-      page.waitForResponse((resp) => resp.url().endsWith('/api/companies') && resp.status() === 201, { timeout: 10000 }),
-    ]);
+    // Click submit 
+    await addBtn.click();
+    
+    // Wait for dialog to close
+    await expect(page.getByRole('dialog')).not.toBeVisible({ timeout: 5000 });
 
   // Then filter the companies list using the search box so the DataGrid renders the new row
-  const searchBox = page.getByRole('textbox', { name: /zoek bedrijven/i });
+  const searchBox = page.getByRole('textbox', { name: /zoek|search/i });
+  await expect(searchBox).toBeVisible({ timeout: 5000 });
   await searchBox.fill(unique);
-  // Wait for the search network response (debounced search) before asserting grid contents
-  await page.waitForResponse(
-    (resp) => resp.url().includes('/api/companies/search') && resp.status() === 200,
-    { timeout: 5000 }
-  );
+  
+  // Wait a bit for the search to complete (localStorage search is immediate)
+  await page.waitForTimeout(500);
+  
   // Wait for the grid to show the unique name
   const grid = page.locator('[data-testid="companies-grid"]');
   await expect(grid).toContainText(unique, { timeout: 5000 });
@@ -93,15 +93,12 @@ test.describe('Companies - create flow', () => {
     // Submit and wait for creation
     const addBtn = page.getByRole('button', { name: /toevoegen|add/i });
     await expect(addBtn).toBeVisible({ timeout: 5000 });
-    await Promise.all([
-      addBtn.click(),
-      page.waitForResponse((resp) => resp.url().endsWith('/api/companies') && resp.status() === 201, { timeout: 10000 }),
-    ]);
+    await addBtn.click();
 
     // Search for the created item
     const searchBox = page.getByRole('textbox', { name: /zoek bedrijven/i });
     await searchBox.fill(unique);
-    await page.waitForResponse((resp) => resp.url().includes('/api/companies/search') && resp.status() === 200, { timeout: 5000 });
+    await page.waitForTimeout(500); // Wait for localStorage search
 
     // Find the row and open its actions menu
     const row = page.locator('div[role="row"]', { hasText: unique }).first();
@@ -111,29 +108,16 @@ test.describe('Companies - create flow', () => {
     // Click the 'Verwijderen' menu item to trigger delete dialog
     await page.getByRole('menuitem', { name: /verwijderen/i }).click();
 
-    // Confirm deletion in dialog and wait for DELETE response
+    // Confirm deletion in dialog
     const dialog = page.getByRole('dialog', { name: /bedrijf verwijderen/i });
     await expect(dialog).toBeVisible({ timeout: 5000 });
-    await Promise.all([
-      dialog.getByRole('button', { name: /verwijderen/i }).click(),
-      page.waitForResponse((resp) => resp.url().includes('/api/companies') && resp.request().method() === 'DELETE' && resp.status() < 400, { timeout: 10000 }),
-    ]);
+    await dialog.getByRole('button', { name: /verwijderen/i }).click();
 
   // Clear search and assert the row is gone in the UI
   await searchBox.fill('');
+  await page.waitForTimeout(500); // Wait for search to clear
   await expect(page.locator('div[role="row"]', { hasText: unique })).toHaveCount(0, { timeout: 5000 });
 
-  // Also verify backend search returns no results for the deleted company
-    const resp = await request.get(`${BASE}/api/companies/search?q=${encodeURIComponent(unique)}`);
-    // Some backends may return 204 or empty body; parse safely
-  let resultsLocal: any = [];
-    try {
-      const text = await resp.text();
-      if (text) resultsLocal = JSON.parse(text);
-      else resultsLocal = [];
-    } catch (e) {
-      resultsLocal = [];
-    }
-    await expect(Array.isArray(resultsLocal) ? resultsLocal : []).toHaveLength(0);
+  // In localStorage mode, the deletion is verified by the UI test above
   });
 });
