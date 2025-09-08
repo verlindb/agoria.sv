@@ -129,11 +129,11 @@ export const Companies: React.FC = () => {
     setSelectedCompany(null);
   };
 
-  const handleFormSubmit = (values: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => {
+  const handleFormSubmit = async (values: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => {
     if (formMode === 'create') {
-      addCompany(values);
+      await addCompany(values);
     } else if (formMode === 'edit' && selectedCompany) {
-      updateCompany(selectedCompany.id, values);
+      await updateCompany(selectedCompany.id, values);
     }
   };
 

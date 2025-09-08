@@ -20,7 +20,7 @@ import { Company } from '../../types';
 interface CompanyFormModalProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (values: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  onSubmit: (values: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
   company?: Company | null;
   mode: 'create' | 'edit' | 'view';
 }
@@ -65,27 +65,27 @@ export const CompanyFormModal: React.FC<CompanyFormModalProps> = ({
   const isReadOnly = mode === 'view';
   const title = mode === 'create' ? 'Nieuw Bedrijf' : mode === 'edit' ? 'Bedrijf Bewerken' : 'Bedrijf Details';
 
-  const initialValues: Omit<Company, 'id' | 'createdAt' | 'updatedAt'> = company || {
-    name: '',
-    legalName: '',
-    ondernemingsnummer: '',
-    type: 'BV',
-    numberOfEmployees: 0,
-    sector: '',
-    status: 'pending',
+  const initialValues: Omit<Company, 'id' | 'createdAt' | 'updatedAt'> = {
+    name: company?.name ?? '',
+    legalName: company?.legalName ?? '',
+    ondernemingsnummer: company?.ondernemingsnummer ?? '',
+    type: company?.type ?? 'BV',
+    numberOfEmployees: company?.numberOfEmployees ?? 0,
+    sector: company?.sector ?? '',
+    status: company?.status ?? 'pending',
     address: {
-      street: '',
-      number: '',
-      postalCode: '',
-      city: '',
-      country: 'België',
+      street: company?.address?.street ?? '',
+      number: company?.address?.number ?? '',
+      postalCode: company?.address?.postalCode ?? '',
+      city: company?.address?.city ?? '',
+      country: company?.address?.country ?? 'België',
     },
     contactPerson: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      role: '',
+      firstName: company?.contactPerson?.firstName ?? '',
+      lastName: company?.contactPerson?.lastName ?? '',
+      email: company?.contactPerson?.email ?? '',
+      phone: company?.contactPerson?.phone ?? '',
+      role: company?.contactPerson?.role ?? '',
     },
   };
 
@@ -110,11 +110,20 @@ export const CompanyFormModal: React.FC<CompanyFormModalProps> = ({
         </Box>
       </DialogTitle>
       <Formik
+        key={`${mode}-${company?.id || 'new'}`}
         initialValues={initialValues}
         validationSchema={!isReadOnly ? validationSchema : undefined}
-        onSubmit={(values) => {
-          onSubmit(values);
-          onClose();
+        enableReinitialize={true}
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            await onSubmit(values);
+            onClose();
+          } catch (error) {
+            console.error('Form submission error:', error);
+            // Don't close the modal on error so user can see validation errors
+          } finally {
+            setSubmitting(false);
+          }
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur }) => (

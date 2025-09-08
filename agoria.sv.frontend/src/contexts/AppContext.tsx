@@ -18,8 +18,8 @@ interface AppContextType {
   setSearchQuery: (query: string) => void;
   setSelectedCompany: (company: Company | null) => void;
   setIsDrawerOpen: (open: boolean) => void;
-  addCompany: (company: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => void;
-  updateCompany: (id: string, company: Partial<Company>) => void;
+  addCompany: (company: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
+  updateCompany: (id: string, company: Partial<Company>) => Promise<void>;
   deleteCompany: (id: string) => void;
   importCompanies: (companies: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>[]) => void;
   searchCompanies: (query: string) => Promise<Company[]>;
@@ -156,19 +156,32 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }, [employees.length, technicalUnits.length, worksCouncilService]);
 
   const addCompany = useCallback((company: Omit<Company, 'id' | 'createdAt' | 'updatedAt'>) => {
-    companyService
+    return companyService
       .create(company)
       .then((created) => setCompanies((prev) => [...prev, created]))
-      .catch((err) => console.error('Failed to create company:', err));
+      .catch((err) => {
+        console.error('Failed to create company:', err);
+        throw err;
+      });
   }, [companyService]);
 
   const updateCompany = useCallback((id: string, updates: Partial<Company>) => {
-    companyService
+    return companyService
       .update(id, updates)
       .then((updated) =>
         setCompanies((prev) => prev.map((c) => (c.id === id ? updated : c)))
       )
-      .catch((err) => console.error('Failed to update company:', err));
+      .catch((err) => {
+        console.error('Failed to update company:', err);
+        // Show user-friendly error message
+        const errorMessage = err.message.includes('Status must be') 
+          ? 'Status moet "actief", "inactief" of "in afwachting" zijn'
+          : 'Er is een fout opgetreden bij het bijwerken van het bedrijf';
+        
+        // You can implement a toast notification or error dialog here
+        alert(errorMessage);
+        throw err; // Re-throw to handle in UI if needed
+      });
   }, [companyService]);
 
   const deleteCompany = useCallback((id: string) => {

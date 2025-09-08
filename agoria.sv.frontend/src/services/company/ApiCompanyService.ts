@@ -88,6 +88,7 @@ export class ApiCompanyService implements ICompanyService {
     if (updates.legalName !== undefined) command.LegalName = updates.legalName;
     if (updates.ondernemingsnummer !== undefined) command.Ondernemingsnummer = updates.ondernemingsnummer;
     if (updates.type !== undefined) command.Type = updates.type;
+    if (updates.status !== undefined) command.Status = updates.status;
     if (updates.sector !== undefined) command.Sector = updates.sector;
     if (updates.numberOfEmployees !== undefined) command.NumberOfEmployees = updates.numberOfEmployees;
     
