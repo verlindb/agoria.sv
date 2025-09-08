@@ -38,46 +38,16 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         channel: 'chrome',
         launchOptions: {
-          executablePath: '/usr/bin/google-chrome'
+          executablePath: '/usr/bin/google-chrome',
+          args: [
+            '--no-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-features=VizDisplayCompositor'
+          ]
         }
       },
     },
-
-    {
-      name: 'firefox',
-      use: { 
-        ...devices['Desktop Firefox'],
-        launchOptions: {
-          executablePath: '/usr/bin/firefox'
-        }
-      },
-    },
-
-    // Note: WebKit/Safari not available on Linux, commenting out
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
 
   /* Run your local dev server before starting the tests */
