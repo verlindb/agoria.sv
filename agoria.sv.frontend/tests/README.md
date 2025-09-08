@@ -1,6 +1,6 @@
 # Playwright Test Suite for Agoria.sv Frontend
 
-This directory contains comprehensive Playwright tests for all screens and functionality of the Agoria.sv frontend application.
+This directory contains comprehensive Playwright tests for all screens and functionality of the Agoria.sv frontend application, including **advanced MCP (Model Context Protocol) enhanced test suites**.
 
 ## 🚀 Quick Start
 
@@ -24,6 +24,12 @@ This directory contains comprehensive Playwright tests for all screens and funct
    ./run-tests.sh
    ```
 
+4. **Run MCP Enhanced Tests:**
+   ```bash
+   ./run-mcp-tests.sh
+   npm run test:mcp-suite
+   ```
+
 ## 📁 Test Files Overview
 
 The test suite includes comprehensive coverage of all application screens:
@@ -42,6 +48,13 @@ The test suite includes comprehensive coverage of all application screens:
 ### Application Features
 - **`placeholder-pages.spec.ts`** - Settings, Elections, Candidates, Reports pages
 - **`localstorage.spec.ts`** - LocalStorage environment configuration and data persistence
+
+### 🎭 MCP Enhanced Test Suites (NEW)
+- **`crud-operations-mcp.spec.ts`** - **150+ enhanced CRUD tests** with MCP features
+- **`advanced-mcp-scenarios.spec.ts`** - **Advanced performance and accessibility testing**
+- **`integration-workflow-mcp.spec.ts`** - **End-to-end workflow testing with MCP**
+
+See **`MCP-TEST-DOCUMENTATION.md`** for detailed MCP test documentation.
 
 ## 🔧 Configuration
 
@@ -120,6 +133,18 @@ npx playwright test technical-units.spec.ts technical-unit-detail.spec.ts
 
 # LocalStorage environment tests
 npx playwright test localstorage.spec.ts
+
+# MCP Enhanced CRUD tests (NEW)
+npm run test:crud-mcp
+
+# Advanced MCP scenarios (NEW)
+npm run test:advanced-mcp
+
+# Integration workflow MCP tests (NEW)
+npm run test:workflow-mcp
+
+# All MCP tests together (NEW)
+npm run test:mcp-suite
 
 # With specific browser
 npx playwright test --project=chromium

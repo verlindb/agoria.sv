@@ -26,26 +26,38 @@ export default defineConfig({
     /* Take screenshot on failure */
     screenshot: 'only-on-failure',
     
-    /* Record video on failure */
-    video: 'retain-on-failure',
+    /* Disable video recording to avoid ffmpeg dependency */
+    video: 'off',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        launchOptions: {
+          executablePath: '/usr/bin/google-chrome'
+        }
+      },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { 
+        ...devices['Desktop Firefox'],
+        launchOptions: {
+          executablePath: '/usr/bin/firefox'
+        }
+      },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // Note: WebKit/Safari not available on Linux, commenting out
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -72,7 +84,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true,  // Changed from !process.env.CI to true
     timeout: 120 * 1000,
   },
 });

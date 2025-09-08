@@ -15,6 +15,11 @@
     "test:dashboard": "playwright test dashboard.spec.ts",
     "test:navigation": "playwright test navigation.spec.ts",
     "test:localstorage": "playwright test localstorage.spec.ts",
+    "test:crud-mcp": "playwright test crud-operations-mcp.spec.ts",
+    "test:advanced-mcp": "playwright test advanced-mcp-scenarios.spec.ts", 
+    "test:workflow-mcp": "playwright test integration-workflow-mcp.spec.ts",
+    "test:mcp-suite": "playwright test crud-operations-mcp.spec.ts advanced-mcp-scenarios.spec.ts integration-workflow-mcp.spec.ts",
+    "test:all-enhanced": "playwright test --reporter=html",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
