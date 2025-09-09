@@ -1,0 +1,5 @@
+[
+  { "baseName": "TestCo-A", "legalSuffix": "NV", "employees": "5", "sector": "IT" },
+  { "baseName": "TestCo-B", "legalSuffix": "BV", "employees": "10", "sector": "Services" },
+  { "baseName": "TestCo-C", "legalSuffix": "NV", "employees": "2", "sector": "Consulting" }
+]
