@@ -1,10 +1,9 @@
 {
   "dependencies": {
     "@playwright/test": "^1.55.0",
-    "@types/xlsx": "^0.0.35",
-    "xlsx": "^0.18.5"
+    "@types/xlsx": "^0.0.35"
   },
   "devDependencies": {
-    "exceljs": "^4.4.0"
+    "@types/node": "^24.3.1"
   }
 }
