@@ -34,6 +34,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add service defaults & Aspire client integrations.
+builder.AddServiceDefaults();
+
 // Add services
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -45,7 +48,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                      "http://localhost:3000",
+                      "http://localhost:3001",
                       "http://localhost:3001",
                       "http://localhost:3002",
                       "http://localhost:3003",
@@ -65,6 +68,9 @@ builder.Services.AddOpenApiDocument(config =>
 });
 
 var app = builder.Build();
+
+// Explicit startup log to validate Aspire resource log forwarding
+app.Logger.LogInformation("[Agoria.SV.API] Startup initialization complete at {Timestamp}", DateTimeOffset.UtcNow);
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -483,6 +489,8 @@ worksCouncil.MapPost("/{technicalBusinessUnitId:guid}/reorder", async (
 .WithName("ReorderWorksCouncilMembers")
 .Produces(StatusCodes.Status200OK)
 .Produces(StatusCodes.Status400BadRequest);
+
+app.MapDefaultEndpoints();
 
 app.Run();
 

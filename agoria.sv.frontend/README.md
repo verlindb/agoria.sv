@@ -45,7 +45,7 @@ A React-based frontend application for managing social elections, built with Typ
    npm run dev
    ```
 
-The application will be available at `http://localhost:3000` (or the next available port).
+The application will be available at `http://localhost:3001` (or the next available port).
 
 ## Available Scripts
 

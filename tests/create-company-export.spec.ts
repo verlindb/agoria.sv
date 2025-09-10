@@ -2,6 +2,9 @@ import { test, expect } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 import CompanyHelper, { CompanyInput } from './helpers/company-helper';
+import { NavigationHelper } from './helpers/navigation-helper';
+import { GridHelper } from './helpers/grid-helper';
+import { FormHelper } from './helpers/form-helper';
 
 // Use alternative approach for __dirname in TypeScript
 declare const __dirname: string;
@@ -9,7 +12,7 @@ declare const __dirname: string;
 type CompanyData = CompanyInput;
 
 // Parameterize base URL via BASE env var (fallback to localhost)
-const BASE = process.env.BASE ?? 'http://localhost:3000';
+const BASE = process.env.BASE ?? 'http://localhost:3001';
 
 // Increase default timeout for these UI-heavy tests
 test.setTimeout(60000);
@@ -39,13 +42,16 @@ async function validateDownloadedFile(filePath: string, expectedData: CompanyDat
 
 for (const data of companies) {
   test(`create company and test export: ${data.baseName}`, async ({ page, request }) => {
-  const createdRes = await CompanyHelper.createCompany(page, request, { ...data });
-  const created = { unique: createdRes.name, id: createdRes.id };
+    // Initialize helpers
+    const navigation = new NavigationHelper(page);
+    const grid = new GridHelper(page);
+    const form = new FormHelper(page);
 
-    // Now test the export functionality
-    // Navigate back to the companies page to ensure we're in the right place
-    await page.goto(`${BASE}/companies`);
-    await page.waitForLoadState('networkidle');
+    const createdRes = await CompanyHelper.createCompany(page, request, { ...data });
+    const created = { unique: createdRes.name, id: createdRes.id };
+
+    // Navigate to companies page using navigation helper
+    await navigation.navigateToCompanies();
 
     // Set up download promise before clicking export button
     const downloadPromise = page.waitForEvent('download');
@@ -86,19 +92,23 @@ for (const data of companies) {
 
 // Additional test: Create multiple companies and validate comprehensive Excel export
 test('create multiple companies and validate comprehensive excel export', async ({ page, request }) => {
+  // Initialize helpers
+  const navigation = new NavigationHelper(page);
+  const grid = new GridHelper(page);
+  const form = new FormHelper(page);
+
   const createdCompanies: Array<CompanyData & { unique: string; id: string | null }> = [];
 
   // Create 3 test companies
   for (let i = 0; i < Math.min(3, companies.length); i++) {
     const data = companies[i];
-  const createdRes = await CompanyHelper.createCompany(page, request, { ...data });
-  createdCompanies.push({ ...data, unique: createdRes.name, id: createdRes.id });
+    const createdRes = await CompanyHelper.createCompany(page, request, { ...data });
+    createdCompanies.push({ ...data, unique: createdRes.name, id: createdRes.id });
   }
 
   try {
-    // Navigate to companies page 
-    await page.goto(`${BASE}/companies`);
-    await page.waitForLoadState('networkidle');
+    // Navigate to companies page using navigation helper
+    await navigation.navigateToCompanies();
 
     // Set up download promise before clicking export button
     const downloadPromise = page.waitForEvent('download');

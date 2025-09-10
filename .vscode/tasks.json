@@ -2,24 +2,24 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Start Dev Server",
+			"label": "free-frontend-port",
 			"type": "shell",
-			"command": "npm run dev",
-			"isBackground": true,
-			"group": "build"
-		},
-		{
-			"label": "Start Dev Server",
-			"type": "shell",
-			"command": "npm run dev --prefix agoria.sv.frontend",
-			"isBackground": true,
-			"group": "build"
+			"command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/free-port-3000.ps1 3001",
+			"problemMatcher": []
 		},
 		{
 			"label": "build-backend",
 			"command": "dotnet",
 			"type": "process",
 			"args": ["build", "${workspaceFolder}/agoria.sv.backend/Agoria.SV.sln"],
+			"group": "build",
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "build-aspire",
+			"command": "dotnet",
+			"type": "process",
+			"args": ["build", "${workspaceFolder}/Agoria.SV.AppHost/Agoria.SV.AppHost.csproj"],
 			"group": "build",
 			"problemMatcher": "$msCompile"
 		},
@@ -35,6 +35,51 @@
 					"ASPNETCORE_ENVIRONMENT": "Development",
 					"ASPNETCORE_URLS": "http://localhost:5000"
 				}
+			}
+		},
+		{
+			"label": "run-aspire",
+			"command": "dotnet",
+			"type": "process",
+			"args": ["run", "--project", "${workspaceFolder}/Agoria.SV.AppHost/Agoria.SV.AppHost.csproj"],
+			"group": "build",
+			"dependsOn": ["free-frontend-port"],
+			"isBackground": true,
+			"problemMatcher": "$msCompile",
+			"options": {
+				"env": {
+					"ASPNETCORE_ENVIRONMENT": "Development",
+					"DOTNET_ENVIRONMENT": "Development"
+				}
+			},
+			"presentation": {
+				{
+					"label": "run-aspire-backend-only",
+					"command": "dotnet",
+					"type": "process",
+					"args": ["run", "--project", "${workspaceFolder}/Agoria.SV.AppHost/Agoria.SV.AppHost.csproj"],
+					"group": "build",
+					"dependsOn": [],
+					"isBackground": true,
+					"problemMatcher": "$msCompile",
+					"options": {
+						"env": {
+							"ASPNETCORE_ENVIRONMENT": "Development",
+							"DOTNET_ENVIRONMENT": "Development",
+							"FRONTEND_EXTERNAL_RUN": "1"
+						}
+					},
+					"presentation": {
+						"echo": true,
+						"reveal": "always",
+						"focus": false,
+						"panel": "new"
+					}
+				}
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new"
 			}
 		}
 	]

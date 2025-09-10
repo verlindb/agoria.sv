@@ -5,7 +5,7 @@
       "name": "Attach to Chrome",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000",
+      "url": "http://localhost:3001",
       "webRoot": "${workspaceFolder}/agoria.sv.frontend/src",
       "sourceMaps": true
     }

@@ -38,7 +38,7 @@ export interface CreatedCompanyResult {
  */
 export class CompanyHelper {
   /** Base frontend URL (overridable via BASE env variable inside tests) */
-  static readonly BASE = process.env.BASE ?? 'http://localhost:3000';
+  static readonly BASE = process.env.BASE ?? 'http://localhost:3001';
 
   /** Default values applied when fields are not provided */
   private static defaults: Required<CompanyInput> = {

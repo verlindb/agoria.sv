@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Agoria.SV.Application\Agoria.SV.Application.csproj" />
     <ProjectReference Include="..\Agoria.SV.Infrastructure\Agoria.SV.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Agoria.SV.ServiceDefaults\Agoria.SV.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

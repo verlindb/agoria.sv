@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "logs:api": "node tools/stream-api-logs.js"
+  },
   "dependencies": {
     "@playwright/test": "^1.55.0",
     "@types/xlsx": "^0.0.35"

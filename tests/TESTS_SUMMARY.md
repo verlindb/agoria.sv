@@ -32,7 +32,7 @@ const del = await request.delete(`${BASE}/api/companies/${created.id}`);
 expect(del.ok()).toBeTruthy();
 ```
 
-Note: If `BASE` points to `http://localhost:3000` the DELETE relies on the frontend/proxy; if `BASE` points to backend port the test calls backend directly.
+Note: If `BASE` points to `http://localhost:3001` the DELETE relies on the frontend/proxy; if `BASE` points to backend port the test calls backend directly.
 
 ### Recommended fixes
 Choose one of the following options:
@@ -45,7 +45,7 @@ Choose one of the following options:
   - Change `vite.config.ts` to read `VITE_API_BASE_URL` (or set both `BACKEND_URL` and `VITE_API_BASE_URL`) so the proxy and client use the same setting.
 
 - Option C — Accept direct backend calls:
-  - Keep `VITE_API_BASE_URL` set and ensure backend CORS allows requests from the frontend origin (`http://localhost:3000`). No dev proxy used.
+  - Keep `VITE_API_BASE_URL` set and ensure backend CORS allows requests from the frontend origin (`http://localhost:3001`). No dev proxy used.
 
 ### Quick reproduction / debug commands (PowerShell)
 ```powershell
@@ -53,7 +53,7 @@ Choose one of the following options:
 $env:BACKEND_URL='http://localhost:52791'; npm run dev --prefix agoria.sv.frontend
 
 # run the Playwright test with BASE set for the test harness
-$env:BASE='http://localhost:3000'; npx playwright test tests/create-company.spec.ts --headed
+$env:BASE='http://localhost:3001'; npx playwright test tests/create-company.spec.ts --headed
 
 # run single test file
 npx playwright test tests/create-company.spec.ts
@@ -74,7 +74,7 @@ Below is a concise, step-by-step description of the behaviour implemented in `te
   - The test reads a fixture file `tests/fixtures/companies.json` and iterates over each company dataset.
 
 - For each company dataset the test performs:
-  1. Navigate to `${BASE}/companies` where `BASE` is read from the `BASE` environment variable (defaults to `http://localhost:3000`).
+  1. Navigate to `${BASE}/companies` where `BASE` is read from the `BASE` environment variable (defaults to `http://localhost:3001`).
  2. Wait for network idle and open the "Nieuw Bedrijf" (New Company) dialog.
  3. Fill the company form fields: name, legal name, enterprise number placeholder (generated BE + 10 digits), company type, number of employees, sector, address fields, and contact person details (name, email, phone, function).
  4. Submit the form by clicking the "Toevoegen" button and wait for the dialog to close.
@@ -88,6 +88,6 @@ Below is a concise, step-by-step description of the behaviour implemented in `te
   - Dialog visibility, search visibility, and API responses are asserted with timeouts (dialog wait 15s, search result wait 20s, test timeout set to 60s) to account for UI latency.
 
 - Important environment considerations
-  - If `BASE` points at the frontend origin (default `http://localhost:3000`), the DELETE and search API calls rely on the frontend dev server and (optionally) its proxy rules; if `BASE` points directly to a backend port the tests call the API directly.
+  - If `BASE` points at the frontend origin (default `http://localhost:3001`), the DELETE and search API calls rely on the frontend dev server and (optionally) its proxy rules; if `BASE` points directly to a backend port the tests call the API directly.
   - For consistent behaviour in development use cases, match `BASE`, `VITE_API_BASE_URL`, and the Vite proxy configuration as described in this summary.
 
