@@ -39,7 +39,7 @@ async function validateDownloadedFile(filePath: string, expectedData: CompanyDat
   
   console.log(`✅ Downloaded Excel file for ${expectedData.unique}: ${Math.round(stats.size / 1024)}KB`);
 }
-async function createCompany(page, request, data: CompanyData) {
+async function createCompany(page: any, request: any, data: CompanyData) {
   const unique = `${data.baseName}-${Date.now()}`;
 
   // Navigate and open dialog

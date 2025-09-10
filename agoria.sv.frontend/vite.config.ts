@@ -28,12 +28,12 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://localhost:52790',
         changeOrigin: true,
         secure: false,
       },
       '/swagger': {
-        target: 'http://localhost:5000',
+        target: 'https://localhost:52790',
         changeOrigin: true,
         secure: false,
       },
