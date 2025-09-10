@@ -280,7 +280,6 @@ export const exportCompaniesToExcel = (companies: Company[]) => {
     'Werknemers': c.numberOfEmployees,
     'Sector': c.sector,
     'Status': c.status,
-    'Aangemaakt': c.createdAt,
     'Straat': c.address?.street || '',
     'Nummer': c.address?.number || '',
     'Postcode': c.address?.postalCode || '',

@@ -26,25 +26,18 @@ export default defineConfig({
     hmr: {
       overlay: false, // Disable overlay to prevent corruption
     },
-    // Proxy API requests to the backend. The target can be overridden via BACKEND_URL env var.
-    // By default the API exposes HTTPS on 52790 and HTTP on 52791 (see backend launchSettings).
-    // Use the HTTP port here to avoid TLS/certificate issues in the dev proxy.
-    // Example: set BACKEND_URL=http://localhost:52791 before running the frontend dev server
-    proxy: (() => {
-      const backend = process.env.BACKEND_URL ?? 'http://localhost:52791';
-      return {
-        '/api': {
-          target: backend,
-          changeOrigin: true,
-          secure: false,
-        },
-        '/swagger': {
-          target: backend,
-          changeOrigin: true,
-          secure: false,
-        },
-      };
-    })(),
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/swagger': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   build: {
     outDir: 'build',
